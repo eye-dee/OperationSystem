@@ -7,9 +7,6 @@ import com.operation.system.service.ResourceQueue;
 
 import java.util.List;
 
-/**
- * Created by Игорь on 01.03.2017.
- */
 public class UltimateEntry extends MainEnrty {
     private ResourceQueue resourceQueue;
     private List<Task> needActivateTasks;

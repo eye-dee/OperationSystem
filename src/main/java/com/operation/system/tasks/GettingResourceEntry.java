@@ -4,9 +4,6 @@ import com.operation.system.model.MainEnrty;
 import com.operation.system.model.Resource;
 import com.operation.system.service.ResourceQueue;
 
-/**
- * Created by Игорь on 27.02.2017.
- */
 public class GettingResourceEntry extends MainEnrty{
     private Resource resource;
     private ResourceQueue resourceQueue;

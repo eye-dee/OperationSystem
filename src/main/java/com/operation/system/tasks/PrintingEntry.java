@@ -2,9 +2,6 @@ package com.operation.system.tasks;
 
 import com.operation.system.model.MainEnrty;
 
-/**
- * Created by Игорь on 27.02.2017.
- */
 public class PrintingEntry extends MainEnrty {
     public PrintingEntry(String taskName, int taskId){
         super(taskName,taskId);

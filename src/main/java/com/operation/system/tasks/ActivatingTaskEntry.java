@@ -3,9 +3,6 @@ package com.operation.system.tasks;
 import com.operation.system.model.MainEnrty;
 import com.operation.system.model.Task;
 
-/**
- * Created by Игорь on 27.02.2017.
- */
 public class ActivatingTaskEntry extends MainEnrty {
     Task childTask;
     public ActivatingTaskEntry(String taskName, int taskId){
