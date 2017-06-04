@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="taskQueue" class="com.operation.system.service.TaskQueue"
+          c:runningTask-ref="runningTask"
+          c:freeTask-ref="freeTask">
+        <property name="tasks">
+            <list value-type="com.operation.system.model.Task">
+                <ref bean="task5"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="resourceQueue" class="com.operation.system.service.ResourceQueue"
+          p:taskQueue-ref="taskQueue"
+          c:freeResource-ref="freeResource"
+          c:runningTask-ref="runningTask">
+        <property name="resources">
+            <list value-type="com.operation.system.model.Resource">
+                <ref bean="resource0"/>
+                <ref bean="resource1"/>
+                <ref bean="resource2"/>
+                <ref bean="resource3"/>
+                <ref bean="resource4"/>
+                <ref bean="resource5"/>
+                <ref bean="resource6"/>
+                <ref bean="resource7"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="operationSystem" class="com.operation.system.OperationSystem"
+          p:taskQueue-ref="taskQueue"
+          p:resourceQueue-ref="resourceQueue"/>
+
+    <bean id="runningTask" class="java.util.concurrent.atomic.AtomicInteger"
+          c:_0="-1"/>
+    <bean id="freeTask" class="java.util.concurrent.atomic.AtomicInteger"
+          c:_0="0"/>
+    <bean id="freeResource" class="java.util.concurrent.atomic.AtomicInteger"
+          c:_0="0"/>
+
+    <bean id="task0" class="com.operation.system.model.Task"
+          p:entry-ref="entry4"
+          p:name="task0"
+    />
+    <bean id="task1" class="com.operation.system.model.Task"
+          p:entry-ref="entry0"
+          p:name="task1"
+    />
+    <bean id="task2" class="com.operation.system.model.Task"
+          p:entry-ref="entry1"
+          p:name="task2"
+    />
+    <bean id="task3" class="com.operation.system.model.Task"
+          p:entry-ref="entry2"
+          p:name="task3"
+    />
+    <bean id="task4" class="com.operation.system.model.Task"
+          p:entry-ref="entry3"
+          p:name="task4"
+    />
+    <bean id="task5" class="com.operation.system.model.Task"
+          p:entry-ref="entry4"
+          p:name="task5"
+    />
+
+    <bean id="entry0" class="com.operation.system.tasks.ActivatingTaskEntry"
+          c:taskId="1"
+          c:taskName="activatingEntry1"
+          p:taskQueue-ref="taskQueue"
+          p:childTask-ref="task2"
+    />
+    <bean id="entry1" class="com.operation.system.tasks.ActivatingTaskEntry"
+          c:taskId="2"
+          c:taskName="activatingEntry2"
+          p:taskQueue-ref="taskQueue"
+          p:childTask-ref="task3"
+    />
+    <bean id="entry2" class="com.operation.system.tasks.PrintingEntry"
+          c:taskName="printingEnrty"
+          c:taskId="3"
+          p:taskQueue-ref="taskQueue"
+    />
+    <bean id="entry3" class="com.operation.system.tasks.GettingResourceEntry"
+          c:taskName="gettingResourceEntry"
+          c:taskId="1"
+          c:resource-ref="resource0"
+          p:resourceQueue-ref="resourceQueue"
+          p:taskQueue-ref="taskQueue"
+    />
+    <bean id="entry4" class="com.operation.system.tasks.UltimateEntry"
+          c:taskName="ultimateentry"
+          c:taskId="4"
+          p:resourceQueue-ref="resourceQueue"
+          p:taskQueue-ref="taskQueue"
+    >
+        <property name="needActivateTasks">
+            <list value-type="com.operation.system.model.Task">
+                <ref bean="task3"/>
+                <ref bean="task2"/>
+                <ref bean="task3"/>
+                <ref bean="task2"/>
+                <ref bean="task3"/>
+            </list>
+        </property>
+
+        <property name="needGetResources">
+            <list value-type="com.operation.system.model.Resource">
+                <ref bean="resource0"/>
+                <ref bean="resource1"/>
+                <ref bean="resource2"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="resource0" class="com.operation.system.model.Resource"
+          c:priority="1"
+          c:task="-1"
+          p:name="resource0"
+    />
+    <bean id="resource1" class="com.operation.system.model.Resource"
+          c:priority="2"
+          c:task="-1"
+          p:name="resource1"
+    />
+    <bean id="resource2" class="com.operation.system.model.Resource"
+          c:priority="3"
+          c:task="-1"
+          p:name="resource2"
+    />
+    <bean id="resource3" class="com.operation.system.model.Resource"
+          c:priority="4"
+          c:task="-1"
+          p:name="resource3"
+    />
+    <bean id="resource4" class="com.operation.system.model.Resource"
+          c:priority="5"
+          c:task="-1"
+          p:name="resource4"
+    />
+    <bean id="resource5" class="com.operation.system.model.Resource"
+          c:priority="6"
+          c:task="-1"
+          p:name="resource5"
+    />
+    <bean id="resource6" class="com.operation.system.model.Resource"
+          c:priority="7"
+          c:task="-1"
+          p:name="resource6"
+    />
+    <bean id="resource7" class="com.operation.system.model.Resource"
+          c:priority="-1"
+          c:task="-1"
+          p:name="resource7"
+    />
+</beans>
