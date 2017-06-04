@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 abstract public class MainEnrty implements Entry {
     protected TaskQueue taskQueue;
     protected String taskName;
-    protected int taskId;
+    private int taskId;
     protected Logger logger;
 
     public MainEnrty(String taskName, int taskId){
